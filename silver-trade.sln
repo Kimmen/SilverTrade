@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "silver-trade", "src\silver-trade.csproj", "{87F5E0C6-904C-4BE9-AF27-2CB92FDFBEF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "silver-trade.test", "tests\silver-trade.test.csproj", "{C33B2C35-1AA6-4BE9-8519-BCAFD5AF8523}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87F5E0C6-904C-4BE9-AF27-2CB92FDFBEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F5E0C6-904C-4BE9-AF27-2CB92FDFBEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F5E0C6-904C-4BE9-AF27-2CB92FDFBEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F5E0C6-904C-4BE9-AF27-2CB92FDFBEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33B2C35-1AA6-4BE9-8519-BCAFD5AF8523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33B2C35-1AA6-4BE9-8519-BCAFD5AF8523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33B2C35-1AA6-4BE9-8519-BCAFD5AF8523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33B2C35-1AA6-4BE9-8519-BCAFD5AF8523}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FC04AF5-A46D-4351-BB15-46920BEA1825}
+	EndGlobalSection
+EndGlobal
