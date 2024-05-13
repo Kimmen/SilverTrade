@@ -13,7 +13,8 @@ public class OnePassBackwardsTrade : ISilverTrade
         var highestPriceDay = int.MinValue;
         var mostProfit = int.MinValue;
 
-        //Go backwards instead of forward
+        //Start with the last day and go backwards, so we can easily keep track of the highest sell price
+        //and calculate max profit as we go
         for (int i = days; i > 0; i--)
         {
             var day = i - 1;
@@ -22,7 +23,7 @@ public class OnePassBackwardsTrade : ISilverTrade
             //Practically prevent calculating profit on the first loop.
             if(day < highestPriceDay)
             {
-                //Determine profit.
+                //Determine profit with the highest sell price found yet.
                 var profit = highestPrice - price;
                 if(profit > mostProfit)
                 {
@@ -49,30 +50,5 @@ public class OnePassBackwardsTrade : ISilverTrade
     public int GetSellDay()
     {
         return _sellDay;
-    }
-
-    private (IList<int> Prices, Dictionary<int, (int Price, int Day)> HightestPrice) PreparePrices(APICaller api)
-    {
-        var days = api.GetDays();
-        var prices = new int[days];
-        var highest = new Dictionary<int, (int Price, int Day)>(days);
-
-        var highestPrice = int.MinValue;
-        var highestPriceDay = 0;
-        for (int i = days; i > 0; i--)
-        {
-            var day = i - 1;
-            var price = api.GetPriceForDay(day);
-            prices[day] = price;
-
-            if (price > highestPrice)
-            {
-                highestPrice = price;
-                highestPriceDay = day;
-            }
-            highest[day] = (highestPrice, highestPriceDay);
-        }
-
-        return (prices, highest);
     }
 }

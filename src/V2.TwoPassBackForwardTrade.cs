@@ -1,4 +1,6 @@
-﻿namespace Kimmen.SilverTrade;
+﻿using static System.Formats.Asn1.AsnWriter;
+
+namespace Kimmen.SilverTrade;
 
 public class TwoPassBackForwardTrade : ISilverTrade
 {
@@ -7,8 +9,11 @@ public class TwoPassBackForwardTrade : ISilverTrade
 
     public TwoPassBackForwardTrade(APICaller api)
     {
-        var (prices, highest) = this.PreparePrices(api);
+        //Pre-evaluate the highest sell price each day can reach going forward, and store it in a dictionary to be used later.
+        var (prices, highest) = this.PrepareSellPrices(api);
         var mostProfit = int.MinValue;
+
+        //Start from the first day and calculate profit by look-up the what the highest sell price would be for the given day.
         for (var i = 0; i < prices.Count - 1; i++)
         {
             var price = prices[i];
@@ -34,7 +39,7 @@ public class TwoPassBackForwardTrade : ISilverTrade
         return _sellDay;
     }
 
-    private (IList<int> Prices, Dictionary<int, (int Price, int Day)> HightestPrice) PreparePrices(APICaller api)
+    private (IList<int> Prices, Dictionary<int, (int Price, int Day)> HightestPrice) PrepareSellPrices(APICaller api)
     {
         var days = api.GetDays();
         var prices = new int[days];
@@ -42,6 +47,7 @@ public class TwoPassBackForwardTrade : ISilverTrade
 
         var highestPrice = int.MinValue;
         var highestPriceDay = 0;
+
         for (int i = days; i > 0; i--)
         {
             var day = i - 1;
@@ -53,6 +59,7 @@ public class TwoPassBackForwardTrade : ISilverTrade
                 highestPrice = price;
                 highestPriceDay = day;
             }
+
             highest[day] = (highestPrice, highestPriceDay);
         }
 

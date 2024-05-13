@@ -10,10 +10,12 @@ public class NPassForwardTrade : ISilverTrade
         var prices = GetPrices(api);
 
         var mostProfit = int.MinValue;
+        //Start with first day to determine the max profit by sarching ahead.
         for(int day = 0; day < prices.Count; day++)
         {
             var price = prices[day];
             
+            //Find the highest sell price looking forward
             for(int c = day + 1; c < prices.Count; c++)
             {
                 var currentPrice = prices[c];
